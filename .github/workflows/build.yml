@@ -12,8 +12,8 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
-  lint:
-    name: ESLint Quality Gate
+  static-analysis:
+    name: Static Analysis Quality Gates
     runs-on: ubuntu-latest
 
     steps:
@@ -29,11 +29,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run ESLint (no warnings allowed)
+        run: npm run lint -- --max-warnings=0
+
+      - name: Run Prettier check
+        run: npm run format:check
 
   build:
-    needs: lint
+    needs: static-analysis
     runs-on: ubuntu-latest
 
     steps:
