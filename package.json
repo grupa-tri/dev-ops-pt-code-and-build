@@ -8,7 +8,8 @@
     "dev": "nodemon src/index.js",
     "build": "node --check src/index.js",
     "test": "jest --runInBand",
-    "test:coverage": "jest --runInBand --coverage"
+    "test:coverage": "jest --runInBand --coverage",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,9 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "globals": "^17.6.0",
     "jest": "^30.2.0",
     "nodemon": "^3.1.14",
     "supertest": "^7.1.4"
