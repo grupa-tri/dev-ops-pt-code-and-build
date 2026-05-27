@@ -36,7 +36,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          
+
       - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
@@ -44,13 +44,13 @@ jobs:
           load: true
           push: false
           tags: |
-            notes-api:${{ steps.version.outputs.version }}
-            notes-api:latest
+            api:${{ steps.version.outputs.version }}
+            api:latest
 
       - name: Security Scan with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: notes-api:${{ steps.version.outputs.version }}
+          image-ref: api:${{ steps.version.outputs.version }}
           format: table
           severity: CRITICAL,HIGH
           exit-code: 1
